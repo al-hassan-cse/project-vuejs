@@ -36,7 +36,7 @@
 <script>
 
      
-    import $ from 'jquery'
+    // import $ from 'jquery'
 
     export default {
  
@@ -54,7 +54,7 @@
 			doCreate: function () {
  
 
-                this.$toasted.success("Success Message");
+              // this.$toasted.success("Success Message");
 				alert(111);
                 var Fromdata = {name:this.name, email:this.email, password:this.password, comment:this.comment, status:this.status}
                 console.log(Fromdata);
