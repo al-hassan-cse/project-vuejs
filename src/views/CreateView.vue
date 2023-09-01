@@ -6,21 +6,21 @@
                 <div class="col-md-12">
                     <form v-on:submit.prevent="doCreate" method="POST" action="create.php">
                         <div class="form-group">
-                            <input type="text" class="form-control" id="name" placeholder="name">
+                            <input type="text" v-model="name" class="form-control" id="name" placeholder="name">
                         </div>
                         <div class="form-group">
-                            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                            <input type="email" v-model="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
                         </div>
                         <div class="form-group">
-                            <input type="password" class="form-control" id="password" placeholder="Password">
+                            <input type="password" v-model="password" class="form-control" id="password" placeholder="Password">
                         </div>
                         <div class="form-group">
-                            <textarea class="form-control" id="Comments" placeholder="Comments" rows="3"></textarea>
+                            <textarea class="form-control" v-model="comment" id="Comments" placeholder="Comments" rows="3"></textarea>
                         </div>
                         <div class="form-group">
-                            <select class="form-control" id="exampleFormControlSelect1">
-                                <option>Active</option>
-                                <option>InActive</option>
+                            <select class="form-control" v-model="status" id="status">
+                                <option value="1">Active</option>
+                                <option value="0">InActive</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -32,16 +32,38 @@
         </div>
     </div>
 </template>
+
 <script>
+
+     
+    import $ from 'jquery'
+
     export default {
+ 
         data(){
             return{
-                title:'Create user list'
+                title:'Create user list',
+                name:'',
+                email:'',
+                password:'',
+                comment:'',
+                status:'',
             }
         },
         methods: { 
 			doCreate: function () {
+ 
+
+                this.$toasted.success("Success Message");
 				alert(111);
+                var Fromdata = {name:this.name, email:this.email, password:this.password, comment:this.comment, status:this.status}
+                console.log(Fromdata);
+                //const self = this;
+				// const form = event.target;
+
+				// const ajax = new XMLHttpRequest();
+				// ajax.open("POST", form.getAttribute("action"), true);
+
 			}
 		}
     }

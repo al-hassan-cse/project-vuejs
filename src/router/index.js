@@ -1,6 +1,12 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
-import CreateView from '../views/CreateView.vue'
+//  import Vue from 'vue';
+import { createRouter, createWebHistory } from 'vue-router';
+import HomeView from '../views/HomeView.vue';
+import CreateView from '../views/CreateView.vue';
+import $ from "jquery";
+
+
+ 
+
 
 const routes = [
   {
