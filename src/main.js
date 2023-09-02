@@ -6,12 +6,7 @@ import router from './router'
 import Toasted from 'vue-toasted';
 import 'bootstrap/dist/css/bootstrap.css';
 
-// Vue.use(Toasted, {
-//     duration: 2000
-//   })
-createApp(Toasted).use({
-    duration: 2000
-})
+
 
 
 createApp(App).use(router).mount('#app')

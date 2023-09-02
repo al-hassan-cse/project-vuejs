@@ -26,6 +26,7 @@
                         <div class="form-group">
                             <button type="submit" class="btn btn-info">Submit</button>
                         </div>
+                        
                     </form>
                 </div>
             </div>
@@ -33,9 +34,9 @@
     </div>
 </template>
 
-<script>
+<script >
 
-     
+     import { toast } from 'vue-sonner'
     // import $ from 'jquery'
 
     export default {
@@ -48,12 +49,14 @@
                 password:'',
                 comment:'',
                 status:'',
+                toastCount: 0
             }
         },
         methods: { 
-			doCreate: function () {
- 
 
+           
+			doCreate: function () {
+toast.success('Event has been created')
               // this.$toasted.success("Success Message");
 				alert(111);
                 var Fromdata = {name:this.name, email:this.email, password:this.password, comment:this.comment, status:this.status}
