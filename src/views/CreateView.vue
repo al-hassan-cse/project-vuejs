@@ -35,9 +35,9 @@
 
 <script>
 
-     
-    // import $ from 'jquery'
-
+    import { toast } from 'vue3-toastify';
+    import 'vue3-toastify/dist/index.css';
+    
     export default {
  
         data(){
@@ -53,9 +53,19 @@
         methods: { 
 			doCreate: function () {
  
-
-              // this.$toasted.success("Success Message");
-				alert(111);
+                
+                if(this.name == ''){
+                    // toast('Please enter your name!');
+                    toast.info('Please enter your name!',{
+                        autoClose: 5000,
+                    });
+                    // toast.success('Wow success!',{
+                    //     autoClose: 1000,
+                    // });
+                    // toast.warning('Wow warning!',{
+                    //     autoClose: 1000,
+                    // });
+                }
                 var Fromdata = {name:this.name, email:this.email, password:this.password, comment:this.comment, status:this.status}
                 console.log(Fromdata);
                 //const self = this;
@@ -63,7 +73,6 @@
 
 				// const ajax = new XMLHttpRequest();
 				// ajax.open("POST", form.getAttribute("action"), true);
-
 			}
 		}
     }
