@@ -2,6 +2,7 @@
     <div class="container">
         <div class="about">
             <h1>{{ title }}</h1>
+            
             <div class="row">
                 <div class="col-md-12">
                     <form v-on:submit.prevent="doCreate" method="POST" action="create.php">
@@ -38,6 +39,7 @@
 
     import { toast } from 'vue3-toastify';
     import 'vue3-toastify/dist/index.css';
+    import axios from "axios";
     
     export default {
  
@@ -49,41 +51,89 @@
                 password:'',
                 comment:'',
                 status:'',
-                toastCount: 0
+                toastCount: 0,
+                image:'',
             }
         },
         methods: { 
 
-			doCreate: function () {
+            async doCreate() {
+
                 if(this.name == ''){
                     toast.info('Please enter your name!',{
                         autoClose: 5000,
-                    });
-                    return false;
+                    }); 
                 }
-                if(this.email == ''){
-                    toast.info('Please enter your email!',{
-                        autoClose: 5000,
-                    });
-                    return false;
-                }
-                if(this.password == ''){
-                    toast.info('Please enter your password!',{
-                        autoClose: 5000,
-                    });
-                    return false;
-                }
-                var Fromdata = {name:this.name, email:this.email, password:this.password, comment:this.comment, status:this.status}
-                console.log(Fromdata);
 
+                const formData = {name:this.name, email:this.email, password:this.password, comment:this.comment, status:this.status} 
+
+               axios.get("http://localhost/api/contacts.php", formData)
+
+                // axios({
+                //     method: 'post',
+                //     url: 'api/contacts.php',
+                //     data: formData,
+                //     config: { headers: {'Content-Type': 'multipart/form-data' }}
+                // })
+                // .then(function (response) {
+                //     console.log(response)
+                // })
+                // .catch(function (response) {
+                //     console.log(response)
+                // });
                 
+                //const formData = new FormData();
+                //  formData.append("foo", "bar");
+                // const { data } = await axios.post("http://localhost:8080/postData.php", formData);
+                //this.response = data;
+            },
+
+            
+
+            
+			// doCreate: function () {
+            //     if(this.name == ''){
+            //         // toast('Please enter your name!');
+            //         toast.info('Please enter your name!',{
+            //             autoClose: 5000,
+            //         });
+            //         // toast.success('Wow success!',{
+            //         //     autoClose: 1000,
+            //         // });
+            //         // toast.warning('Wow warning!',{
+            //         //     autoClose: 1000,
+            //         // });
+            //     }
+            //     var Fromdata = {name:this.name, email:this.email, password:this.password, comment:this.comment, status:this.status} 
+               
+            //     alert(process.env.ROOT_API);
+            //     //axios.get(process.env.ROOT_API+'/ajaxfile.php?data='+Fromdata)
+
+            //     //axios.get("http://localhost:8080/create");
+            //     //const self = this;
+			// 	// const form = event.target;
+
+			// 	// const ajax = new XMLHttpRequest();
+			// 	// ajax.open("POST", form.getAttribute("action"), true);
+			// },
+
+            async getAnswer() {
+
+                const { data } = await axios.get("http://localhost/api/contacts.php");
+                console.log(data);
                 
-                //const self = this;
-				// const form = event.target;
-				// const ajax = new XMLHttpRequest();
-				// ajax.open("POST", form.getAttribute("action"), true);
-			}
-		}
+            },
+
+            // loadData: function() { 
+            //     this.http.get('/notifications').then((response) => { 
+            //         this.message = "This is a message"; 
+            //         console.log(this.message);
+            //     }); 
+            // },
+		},
+        mounted() {
+            this.getAnswer();
+        },
     }
 </script>
 
