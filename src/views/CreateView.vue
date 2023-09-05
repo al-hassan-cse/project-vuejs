@@ -19,6 +19,7 @@
                         </div>
                         <div class="form-group">
                             <select class="form-control" v-model="status" id="status">
+                                <option value="" selected>Select Status</option>
                                 <option value="1">Active</option>
                                 <option value="0">InActive</option>
                             </select>
@@ -26,7 +27,6 @@
                         <div class="form-group">
                             <button type="submit" class="btn btn-info">Submit</button>
                         </div>
-                        
                     </form>
                 </div>
             </div>
@@ -53,26 +53,33 @@
             }
         },
         methods: { 
+
 			doCreate: function () {
- 
-                
                 if(this.name == ''){
-                    // toast('Please enter your name!');
                     toast.info('Please enter your name!',{
                         autoClose: 5000,
                     });
-                    // toast.success('Wow success!',{
-                    //     autoClose: 1000,
-                    // });
-                    // toast.warning('Wow warning!',{
-                    //     autoClose: 1000,
-                    // });
+                    return false;
+                }
+                if(this.email == ''){
+                    toast.info('Please enter your email!',{
+                        autoClose: 5000,
+                    });
+                    return false;
+                }
+                if(this.password == ''){
+                    toast.info('Please enter your password!',{
+                        autoClose: 5000,
+                    });
+                    return false;
                 }
                 var Fromdata = {name:this.name, email:this.email, password:this.password, comment:this.comment, status:this.status}
                 console.log(Fromdata);
+
+                
+                
                 //const self = this;
 				// const form = event.target;
-
 				// const ajax = new XMLHttpRequest();
 				// ajax.open("POST", form.getAttribute("action"), true);
 			}

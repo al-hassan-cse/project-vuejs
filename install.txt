@@ -1,0 +1,17 @@
+#####toastify install and use#######
+
+#https://ahmedshaltout.com/vuejs/how-to-make-toast-notification-in-vue-3-in-less-than-30-seconds/
+
+    # npm install --save vue3-toastify
+
+    import { toast } from 'vue3-toastify';
+    import 'vue3-toastify/dist/index.css';
+    export default {
+        setup() {
+            toast('welcome to my website');
+            toast.warning('Wow warning!',{
+                autoClose: 1000,
+            });   
+        },
+
+    }
