@@ -1,0 +1,4 @@
+
+npm i axios
+
+npm install cors --save

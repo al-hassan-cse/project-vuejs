@@ -6,5 +6,16 @@ import router from './router'
 // import Toasted from 'vue-toasted';
 import 'bootstrap/dist/css/bootstrap.css'
 
+//import axios from 'axios'
+//createApp.prototype.$http = axios
+import axios from 'axios';
+//const app = createApp(App);
+
+//app.config.globalProperties.$http = axios;
+
+
   
-createApp(App).use(router).mount('#app')
+createApp(App).use(router, axios).mount('#app')
+
+
+
