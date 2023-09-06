@@ -1,4 +1,9 @@
 <?php
+
+header('Access-Control-Allow-Origin: *');  
+echo  'Create user';die;
+return response()->json([$data=>'ok']);
+
 $host = "localhost"; 
 $user = "root"; 
 $password = ""; 

@@ -1,11 +1,11 @@
 <template>
     <div class="container">
         <div class="about">
-            <h1>{{ title }}</h1>
+            <h1>{{ data }}</h1>
             
             <div class="row">
                 <div class="col-md-12">
-                    <form v-on:submit.prevent="doCreate" method="POST" action="create.php">
+                    <form v-on:submit.prevent="sendData" method="POST" action="">
                         <div class="form-group">
                             <input type="text" v-model="name" class="form-control" id="name" placeholder="name">
                         </div>
@@ -46,48 +46,71 @@
         data(){
             return{
                 title:'Create user list',
+
                 name:'',
-                email:'',
-                password:'',
-                comment:'',
-                status:'',
+                    email:'',
+                    password:'',
+                    comment:'',
+                    status:'',
+                 
                 toastCount: 0,
                 image:'',
+                data:''
             }
         },
         methods: { 
 
-            async doCreate() {
+            sendData() {
+                const formData = {name:this.name, email:this.email, password:this.password, comment:this.comment, status:this.status}
+                console.log(formData.name);
 
-                if(this.name == ''){
-                    // toast('Please enter your name!');
-                    toast.info('Please enter your name!',{
-                        autoClose: 5000,
-                    }); 
-                }
-
-                const formData = {name:this.name, email:this.email, password:this.password, comment:this.comment, status:this.status} 
-
-               axios.get("http://localhost/api/contacts.php", formData)
-
-                // axios({
-                //     method: 'post',
-                //     url: 'api/contacts.php',
-                //     data: formData,
-                //     config: { headers: {'Content-Type': 'multipart/form-data' }}
-                // })
-                // .then(function (response) {
-                //     console.log(response)
-                // })
-                // .catch(function (response) {
-                //     console.log(response)
-                // });
+                const url =  'http://localhost/api/post.php&name='+formData.name;
+alert(url);
                 
-                //const formData = new FormData();
-                //  formData.append("foo", "bar");
-                // const { data } = await axios.post("http://localhost:8080/postData.php", formData);
-                //this.response = data;
+                axios.post('http://localhost/api/post.php', formData)
+                    .then(response => {
+                       // Handle the response from the server
+                       console.log(response);
+                    })
+                    .catch(error => {
+                       // Handle any errors
+                        console.error(error);
+                    });
             },
+
+            // async doCreate() {
+
+            //     if(this.name == ''){
+            //         // toast('Please enter your name!');
+            //         toast.info('Please enter your name!',{
+            //             autoClose: 5000,
+            //         }); 
+            //     }
+
+            //     const formData = {name:this.name, email:this.email, password:this.password, comment:this.comment, status:this.status}
+
+            //     await axios.post("http://localhost/api/post.php", formData);
+
+            //     // axios.get("http://localhost/api/contacts.php", formData)
+
+            //     // axios({
+            //     //     method: 'post',
+            //     //     url: 'api/contacts.php',
+            //     //     data: formData,
+            //     //     config: { headers: {'Content-Type': 'multipart/form-data' }}
+            //     // })
+            //     // .then(function (response) {
+            //     //     console.log(response)
+            //     // })
+            //     // .catch(function (response) {
+            //     //     console.log(response)
+            //     // });
+                
+            //     //const formData = new FormData();
+            //     //  formData.append("foo", "bar");
+            //     // const { data } = await axios.post("http://localhost:8080/postData.php", formData);
+            //     //this.response = data;
+            // },
 
             
 
@@ -121,6 +144,7 @@
             async getAnswer() {
 
                 const { data } = await axios.get("http://localhost/api/contacts.php");
+                this.data = data;
                 console.log(data);
                 
             },
