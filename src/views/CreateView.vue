@@ -20,6 +20,7 @@
                         </div>
                         <div class="form-group">
                             <select class="form-control" v-model="status" id="status">
+                                <option value="" selected>Select Status</option>
                                 <option value="1">Active</option>
                                 <option value="0">InActive</option>
                             </select>
@@ -27,7 +28,6 @@
                         <div class="form-group">
                             <button type="submit" class="btn btn-info">Submit</button>
                         </div>
-                        
                     </form>
                 </div>
             </div>
@@ -64,8 +64,28 @@
                 const formData = {name:this.name, email:this.email, password:this.password, comment:this.comment, status:this.status}
                 console.log(formData.name);
 
-                const url =  'http://localhost/api/post.php&name='+formData.name;
-alert(url);
+                if(this.name == ''){
+                    toast.info('Please enter your name!',{
+                        autoClose: 5000,
+                    }); 
+                }
+
+                const formData = {name:this.name, email:this.email, password:this.password, comment:this.comment, status:this.status} 
+
+               axios.get("http://localhost/api/contacts.php", formData)
+
+                // axios({
+                //     method: 'post',
+                //     url: 'api/contacts.php',
+                //     data: formData,
+                //     config: { headers: {'Content-Type': 'multipart/form-data' }}
+                // })
+                // .then(function (response) {
+                //     console.log(response)
+                // })
+                // .catch(function (response) {
+                //     console.log(response)
+                // });
                 
                 axios.post('http://localhost/api/post.php', formData)
                     .then(response => {
