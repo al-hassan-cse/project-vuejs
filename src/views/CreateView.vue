@@ -61,9 +61,7 @@
         methods: { 
 
             sendData() {
-                const formData = {name:this.name, email:this.email, password:this.password, comment:this.comment, status:this.status}
-                console.log(formData.name);
-
+                  
                 if(this.name == ''){
                     toast.info('Please enter your name!',{
                         autoClose: 5000,
