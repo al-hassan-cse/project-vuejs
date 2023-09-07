@@ -13,7 +13,7 @@ import axios from 'axios';
 
 //app.config.globalProperties.$http = axios;
 
-
+//createApp.$http = axios;
   
 createApp(App).use(router, axios).mount('#app')
 

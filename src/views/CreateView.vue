@@ -68,9 +68,28 @@
                     }); 
                 }
 
-                const formData = {name:this.name, email:this.email, password:this.password, comment:this.comment, status:this.status} 
+                const formData = {name:this.name, email:this.email, password:this.password, comment:this.comment, status:this.status}
+                console.log(formData);
 
-               axios.get("http://localhost/api/contacts.php", formData)
+
+                axios.post('http://localhost/api/post.php?name='+this.name+'&email='+this.email+'&password='+this.password+'&comment='+this.comment+'&status='+this.status )
+                .then(function (resp) {
+                    if(resp.data.responseCode == 0){
+                        //app.$toaster.success('Your commant post successfully.')
+                    }else {
+                        //app.$toaster.error('Something was wrong !')
+                    }
+                })
+                .catch(function (resp) {
+                    //app.$toaster.error('Something was wrong !')
+                });
+
+                // this.$http.post(
+                //     'http://localhost/api/contacts.php', 
+                //     { data: formData }
+                // );
+
+                // axios.post("http://localhost/api/contacts.php", formData)
 
                 // axios({
                 //     method: 'post',
@@ -85,15 +104,15 @@
                 //     console.log(response)
                 // });
                 
-                axios.post('http://localhost/api/post.php', formData)
-                    .then(response => {
-                       // Handle the response from the server
-                       console.log(response);
-                    })
-                    .catch(error => {
-                       // Handle any errors
-                        console.error(error);
-                    });
+                // axios.post('http://localhost/api/post.php&data='+formData)
+                //     .then(response => {
+                //        // Handle the response from the server
+                //        console.log(response);
+                //     })
+                //     .catch(error => {
+                //        // Handle any errors
+                //         console.error(error);
+                //     });
             },
 
             // async doCreate() {
