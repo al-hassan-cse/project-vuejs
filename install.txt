@@ -15,3 +15,14 @@
         },
 
     }
+
+axios install
+## npm i axios
+
+
+Vue.js Modal Readme Issues Examples
+npm install --save vue-js-modal
+
+...
+import vmodal from 'vue-js-modal'
+Vue.use(vmodal)

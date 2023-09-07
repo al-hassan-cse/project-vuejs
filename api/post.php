@@ -9,15 +9,12 @@ header('Access-Control-Allow-Origin: *');
 
  
 
-$data = $_GET['name'];
 
 // Process the data
 //$name = $data['name'];
 //$email = $data['email'];
   
-echo $data;die;
-
-
+ 
 $host = "localhost"; 
 $user = "root"; 
 $password = ""; 
@@ -35,12 +32,29 @@ else{
 
 }
  
-$method = $_SERVER['REQUEST_METHOD'];
-echo $method;die;
-$request = explode('/', trim($_SERVER['PATH_INFO'],'/'));
+
+$name = $_GET['name'];
+$email = $_GET['email'];
+$password = md5($_GET['password']);
+$comment = $_GET['comment'];
+$status = $_GET['status'];
+ 
+// $method = $_SERVER['REQUEST_METHOD'];
+// echo $method;die;
+// $request = explode('/', trim($_SERVER['PATH_INFO'],'/'));
 //$input = json_decode(file_get_contents('php://input'),true);
 
+$sql = "insert into contacts (name, email, password, comment, status) values ('$name', '$email', '$password', '$comment', '$status')"; 
 
+// run SQL statement
+$result = mysqli_query($con,$sql);
+
+// die if SQL statement failed
+if (!$result) {
+  http_response_code(404);
+  die(mysqli_error($con));
+}
+die;
 
 switch ($method) {
     case 'GET':

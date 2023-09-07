@@ -1,8 +1,8 @@
 <?php
-
 header('Access-Control-Allow-Origin: *');  
 echo  'Create user';die;
-return response()->json([$data=>'ok']);
+// return response()->json([$data=>'ok']);
+
 
 $host = "localhost"; 
 $user = "root"; 
@@ -12,18 +12,19 @@ $id = '';
 
 $con = mysqli_connect($host, $user, $password,$dbname);
 
+
 if (!$con) {
   die("Connection failed: " . mysqli_connect_error());
 }
+
 else{
-  
+
 }
  
 $method = $_SERVER['REQUEST_METHOD'];
+ 
 $request = explode('/', trim($_SERVER['PATH_INFO'],'/'));
 //$input = json_decode(file_get_contents('php://input'),true);
-
-
 
 
 
