@@ -7,7 +7,7 @@
                 <div class="col-md-12">
                     <form v-on:submit.prevent="doCreate" method="POST" action="create.php">
                         <div class="form-group">
-                            <input type="text" v-model="name" class="form-control" id="name" placeholder="name">
+                            <input type="text" v-model="name" class="form-control" id="name" placeholder="ex.jhon">
                         </div>
                         <div class="form-group">
                             <input type="email" v-model="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
