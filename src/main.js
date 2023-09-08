@@ -9,13 +9,18 @@ import 'bootstrap/dist/css/bootstrap.css'
 //import axios from 'axios'
 //createApp.prototype.$http = axios
 import axios from 'axios';
+import vmodal from 'vue-js-modal'
 //const app = createApp(App);
 
 //app.config.globalProperties.$http = axios;
 
+//createApp.$http = axios;
 
+const app = createApp(App);
+
+ 
   
-createApp(App).use(router, axios).mount('#app')
+app.use(router, axios, vmodal).mount('#app')
 
 
 
