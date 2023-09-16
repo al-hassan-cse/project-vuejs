@@ -71,7 +71,6 @@
                 const formData = {name:this.name, email:this.email, password:this.password, comment:this.comment, status:this.status}
                 console.log(formData);
 
-
                 axios.post('http://localhost/api/post.php?name='+this.name+'&email='+this.email+'&password='+this.password+'&comment='+this.comment+'&status='+this.status )
                 .then(function (resp) {
                     if(resp.data.responseCode == 0){
